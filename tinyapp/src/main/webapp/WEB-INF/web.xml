@@ -1,0 +1,70 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+  
+  <servlet>
+   <servlet-name>SlowFast</servlet-name>
+   <servlet-class>com.xebia.tinyapp.SlowFast</servlet-class>
+   <init-param>
+   		<param-name>MIN</param-name>
+   		<param-value>300</param-value>
+   </init-param>
+   <init-param>
+   		<param-name>MAX</param-name>
+   		<param-value>300</param-value>
+   </init-param>
+ </servlet>
+ 
+ <servlet>
+   <servlet-name>IOConsumer</servlet-name>
+   <servlet-class>com.xebia.tinyapp.IOConsumer</servlet-class>
+ </servlet>
+ 
+ <servlet>
+   <servlet-name>MemoryConsumer</servlet-name>
+   <servlet-class>com.xebia.tinyapp.MemoryConsumer</servlet-class>
+ </servlet>
+ 
+ <servlet>
+   <servlet-name>CPUConsumer</servlet-name>
+   <servlet-class>com.xebia.tinyapp.CPUConsumer</servlet-class>
+ </servlet>
+ 
+ <servlet>
+   <servlet-name>AutoFailer</servlet-name>
+   <servlet-class>com.xebia.tinyapp.AutoFailer</servlet-class>
+   <init-param>
+   		<param-name>FAIL_PROBA</param-name>
+   		<param-value>0.7</param-value>
+   </init-param>
+ </servlet>
+ 
+ <servlet-mapping>
+   <servlet-name>IOConsumer</servlet-name>
+   <url-pattern>/ioconsumer</url-pattern>
+ </servlet-mapping>
+ 
+ <servlet-mapping>
+   <servlet-name>SlowFast</servlet-name>
+   <url-pattern>/slowfast</url-pattern>
+ </servlet-mapping>
+ 
+ <servlet-mapping>
+   <servlet-name>MemoryConsumer</servlet-name>
+   <url-pattern>/memoryconsumer</url-pattern>
+ </servlet-mapping>
+ 
+ <servlet-mapping>
+   <servlet-name>CPUConsumer</servlet-name>
+   <url-pattern>/cpuconsumer</url-pattern>
+ </servlet-mapping>
+ 
+ <servlet-mapping>
+   <servlet-name>AutoFailer</servlet-name>
+   <url-pattern>/autofailer</url-pattern>
+ </servlet-mapping>
+  
+  
+</web-app>
