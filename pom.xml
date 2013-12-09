@@ -44,6 +44,11 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
+            <groupId>org.scala-lang</groupId>
+            <artifactId>scala-library</artifactId>
+            <version>${scala.version}</version>
+        </dependency>
+		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>3.8.1</version>
@@ -53,32 +58,11 @@
 
 <build>
 	<finalName>tinyapp</finalName>
-	<testSourceDirectory>src/test/scala</testSourceDirectory>
 		<plugins>
 			<plugin>
 				<groupId>io.gatling</groupId>
 				<artifactId>gatling-maven-plugin</artifactId>
 				<version>${gatling.version}</version>
-				<executions>
-					<execution>
-<!-- 						<phase>test</phase> -->
-<!-- 						<goals> -->
-<!-- 							<goal>execute</goal> -->
-<!-- 						</goals> -->
-						<configuration>
-						<dataFolder>src/test/resources/data</dataFolder>
-                            <resultsFolder>target/gatling/results</resultsFolder>
-                            <requestBodiesFolder>src/test/resources/request-bodies</requestBodiesFolder>
-                            <simulationsFolder>src/test/scala</simulationsFolder>
-                            <includes>
-                                <include>**/*.scala</include>
-                            </includes>
-							<excludes>
-								<exclude>advanced/*.scala</exclude>
-							</excludes>
-						</configuration>
-					</execution>
-				</executions>
 			</plugin>
 		</plugins>
 	</build>
