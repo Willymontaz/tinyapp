@@ -74,4 +74,5 @@ class ComplexScenario extends Simulation{
 object Params {
   
   val host = System.getProperty("host", "localhost:8080")
+  
 }
