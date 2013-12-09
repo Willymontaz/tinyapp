@@ -53,6 +53,7 @@
 
 <build>
 	<finalName>tinyapp</finalName>
+	<testSourceDirectory>src/test/scala</testSourceDirectory>
 		<plugins>
 			<plugin>
 				<groupId>io.gatling</groupId>
