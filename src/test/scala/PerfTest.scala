@@ -13,7 +13,7 @@ class AutoFailer extends Simulation{
               .get(Params.URL+"/autofailer"))
   
   setUp(scn.inject(ramp(10 users) over (5 seconds),
-                 constantRate(Params.numberOfUsers usersPerSec) during (Params.durationMinutes minutes)))
+                 constantRate(Params.usersPerSec usersPerSec) during (Params.durationMinutes minutes)))
   
   
 }
@@ -25,7 +25,7 @@ class CPUConsumer extends Simulation{
               .get(Params.URL+"/cpuconsumer"))
   
   setUp(scn.inject(ramp(10 users) over (5 seconds),
-                 constantRate(Params.numberOfUsers usersPerSec) during (Params.durationMinutes minutes)))
+                 constantRate(Params.usersPerSec usersPerSec) during (Params.durationMinutes minutes)))
   
   
 }
@@ -37,7 +37,7 @@ class IOConsumer extends Simulation{
               .get(Params.URL+"/ioconsumer"))
   
   setUp(scn.inject(ramp(10 users) over (5 seconds),
-                 constantRate(Params.numberOfUsers usersPerSec) during (Params.durationMinutes minutes)))
+                 constantRate(Params.usersPerSec usersPerSec) during (Params.durationMinutes minutes)))
   
   
 }
@@ -49,7 +49,7 @@ class MemoryConsumer extends Simulation{
               .get(Params.URL+"/memoryconsumer"))
   
   setUp(scn.inject(ramp(10 users) over (5 seconds),
-                 constantRate(Params.numberOfUsers usersPerSec) during (Params.durationMinutes seconds)))
+                 constantRate(Params.usersPerSec usersPerSec) during (Params.durationMinutes seconds)))
   
   
 }
@@ -61,7 +61,7 @@ class SlowFast extends Simulation{
               .get(Params.URL+"/slowfast"))
   
   setUp(scn.inject(ramp(10 users) over (5 seconds),
-                 constantRate(Params.numberOfUsers usersPerSec) during (Params.durationMinutes seconds)))
+                 constantRate(Params.usersPerSec usersPerSec) during (Params.durationMinutes seconds)))
   
   
 }
