@@ -10,10 +10,10 @@ class AutoFailer extends Simulation{
   
   val scn = scenario("AutoFailer")
             .exec(http("AutoFailRequest")
-              .get("http://"+Params.host+"/tinyapp/autofailer"))
+              .get(Params.URL+"/autofailer"))
   
   setUp(scn.inject(ramp(10 users) over (5 seconds),
-                 constantRate(20 usersPerSec) during (2 minutes)))
+                 constantRate(Params.numberOfUsers usersPerSec) during (Params.durationMinutes minutes)))
   
   
 }
@@ -22,10 +22,10 @@ class CPUConsumer extends Simulation{
   
   val scn = scenario("CPUConsumer")
             .exec(http("CPUConsumer")
-              .get("http://"+Params.host+"/tinyapp/cpuconsumer"))
+              .get(Params.URL+"/cpuconsumer"))
   
   setUp(scn.inject(ramp(10 users) over (5 seconds),
-                 constantRate(20 usersPerSec) during (2 minutes)))
+                 constantRate(Params.numberOfUsers usersPerSec) during (Params.durationMinutes minutes)))
   
   
 }
@@ -34,10 +34,10 @@ class IOConsumer extends Simulation{
   
   val scn = scenario("IOConsumer")
             .exec(http("IOConsumer")
-              .get("http://"+Params.host+"/tinyapp/ioconsumer"))
+              .get(Params.URL+"/ioconsumer"))
   
   setUp(scn.inject(ramp(10 users) over (5 seconds),
-                 constantRate(20 usersPerSec) during (2 minutes)))
+                 constantRate(Params.numberOfUsers usersPerSec) during (Params.durationMinutes minutes)))
   
   
 }
@@ -46,10 +46,10 @@ class MemoryConsumer extends Simulation{
   
   val scn = scenario("MemoryConsumer")
             .exec(http("MemoryConsumer")
-              .get("http://"+Params.host+"/tinyapp/memoryconsumer"))
+              .get(Params.URL+"/memoryconsumer"))
   
   setUp(scn.inject(ramp(10 users) over (5 seconds),
-                 constantRate(20 usersPerSec) during (30 seconds)))
+                 constantRate(Params.numberOfUsers usersPerSec) during (Params.durationMinutes seconds)))
   
   
 }
@@ -58,10 +58,10 @@ class SlowFast extends Simulation{
   
   val scn = scenario("SlowFast")
             .exec(http("SlowFast")
-              .get("http://"+Params.host+"/tinyapp/slowfast"))
+              .get(Params.URL+"/slowfast"))
   
   setUp(scn.inject(ramp(10 users) over (5 seconds),
-                 constantRate(20 usersPerSec) during (30 seconds)))
+                 constantRate(Params.numberOfUsers usersPerSec) during (Params.durationMinutes seconds)))
   
   
 }
@@ -73,6 +73,8 @@ class ComplexScenario extends Simulation{
 
 object Params {
   
-  val host = System.getProperty("host", "localhost:8080")
+  val URL = "http://"+System.getProperty("host", "localhost")+":"+System.getProperty("port", "8080")+"/tinyapp"
+  val durationMinutes = System.getProperty("durationMinutes", "2").toInt;
+  val usersPerSec = System.getProperty("usersPerSec", "20").toInt
   
 }
