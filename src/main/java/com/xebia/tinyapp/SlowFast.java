@@ -1,7 +1,6 @@
 package com.xebia.tinyapp;
 
 import java.io.IOException;
-import java.util.Random;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -20,10 +19,15 @@ public class SlowFast extends HttpServlet {
 		MAX = Integer.parseInt(config.getInitParameter("MAX"));
 	}
 	
-	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		
+		String forename = "John";
+		String lastname = "Doe";
+		
+		if(req.getParameter("forename") != null) forename = req.getParameter("forename");
+		if(req.getParameter("lastname") != null) lastname = req.getParameter("lastname");
 		
 		try {
 			long slowSleep = 0;
@@ -35,7 +39,7 @@ public class SlowFast extends HttpServlet {
 			long regularSpleep = (long) (20 + Math.random() * 40);
 			Thread.sleep(regularSpleep);
 
-			resp.getWriter().println("<number>\n\t<type>PI</type>\n\t<digits>"+(regularSpleep+slowSleep)+"</digits>\n</number>");
+			resp.getWriter().println("<infos>\n<number>\n\t<type>PI</type>\n\t<digits>"+(regularSpleep+slowSleep)+"</digits>\n</number>\n<person>\n\t<forename>"+forename+"</forename>\n\t<lastname>"+lastname+"</lastname>\n</person>\n</infos>");
 			
 			
 		} catch (InterruptedException e) {
