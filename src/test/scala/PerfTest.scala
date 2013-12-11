@@ -49,7 +49,7 @@ class MemoryConsumer extends Simulation{
               .get(Params.URL+"/memoryconsumer"))
   
   setUp(scn.inject(ramp(10 users) over (5 seconds),
-                 constantRate(Params.usersPerSec usersPerSec) during (Params.durationMinutes seconds)))
+                 constantRate(Params.usersPerSec usersPerSec) during (Params.durationMinutes minutes)))
   
   
 }
@@ -61,7 +61,7 @@ class SlowFast extends Simulation{
               .get(Params.URL+"/slowfast"))
   
   setUp(scn.inject(ramp(10 users) over (5 seconds),
-                 constantRate(Params.usersPerSec usersPerSec) during (Params.durationMinutes seconds)))
+                 constantRate(Params.usersPerSec usersPerSec) during (Params.durationMinutes minutes)))
   
   
 }

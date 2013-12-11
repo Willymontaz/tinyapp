@@ -1,7 +1,6 @@
-package com.xebia.tinyapp;
+package com.xebia.tinyapp.util;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 
 public class PiDigits {
 

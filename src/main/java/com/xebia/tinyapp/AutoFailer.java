@@ -22,7 +22,7 @@ public class AutoFailer extends HttpServlet {
 			throws ServletException, IOException {
 
 		if(Math.random() < FAIL_PROBA){
-			resp.setStatus(500);
+			if("true".equals(req.getParameter("use500"))) resp.setStatus(500);
 			resp.getWriter().println("500 Server Error");
 		} else {
 			resp.getWriter().println("200 Ok");

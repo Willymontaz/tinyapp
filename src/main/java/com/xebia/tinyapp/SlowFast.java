@@ -35,7 +35,7 @@ public class SlowFast extends HttpServlet {
 			long regularSpleep = (long) (20 + Math.random() * 40);
 			Thread.sleep(regularSpleep);
 
-			resp.getWriter().println("<some><xml>"+(regularSpleep+slowSleep)+"</xml></some>");
+			resp.getWriter().println("<number>\n\t<type>PI</type>\n\t<digits>"+(regularSpleep+slowSleep)+"</digits>\n</number>");
 			
 			
 		} catch (InterruptedException e) {
