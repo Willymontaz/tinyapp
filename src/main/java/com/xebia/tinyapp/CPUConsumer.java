@@ -20,7 +20,6 @@ public class CPUConsumer extends HttpServlet {
 
 		int nDigits = Integer.parseInt(req.getParameter("digits"));
 		BigDecimal pi = PiDigits.computePi(nDigits);
-		//pi.setScale(2, RoundingMode.FLOOR);
 		resp.getWriter().println(pi.toPlainString());
 		
 	}

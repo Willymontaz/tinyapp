@@ -18,6 +18,18 @@ class AutoFailer extends Simulation{
   
 }
 
+class AutoFailer extends Simulation{
+  
+  val scn = scenario("AutoFailer")
+            .exec(http("AutoFailRequest")
+              .get(Params.URL+"/autofailer"))
+  
+  setUp(scn.inject(ramp(10 users) over (5 seconds),
+                 constantRate(Params.usersPerSec usersPerSec) during (Params.durationMinutes minutes)))
+  
+  
+}
+
 class CPUConsumer extends Simulation{
   
   val scn = scenario("CPUConsumer")

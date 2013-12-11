@@ -2,6 +2,7 @@ package com.xebia.tinyapp;
 
 import java.io.IOException;
 import java.lang.management.ManagementFactory;
+import java.math.BigDecimal;
 
 import javax.management.MBeanServer;
 import javax.management.ObjectName;
@@ -49,10 +50,12 @@ public class MemoryConsumer extends HttpServlet{
 		
 		/*
 		 * Use CPU, hopefully will get worse with GC
+		 * Use random to prevent code optimization
 		 */
-		PiDigits.computePi(5000);
+		int nDigits = (int) (1000 + Math.random() * 500);
+		BigDecimal pi = PiDigits.computePi(nDigits);
 		
-		resp.getWriter().println("Cache size is "+cache.sizeKo()+" Ko ");
+		resp.getWriter().println("Cache size is "+cache.sizeKo()+" Ko \n\n\n"+pi.toPlainString());
 		
 	}
 	
