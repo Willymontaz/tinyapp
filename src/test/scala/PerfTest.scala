@@ -12,13 +12,13 @@ class Exercice1A extends Simulation{
   
   val scn = scenario("Exercice1A")
             .exec(http("Exercice1A")
-         //Effectuer un get sur l'url "tinyapp/slowfast"
+            .get("http://webapp-3.aws.xebiatechevent.info:8080/tinyapp/slowfast"))    
   
   //Injecter dans le scénario une montée progressive de 5 secondes puis un plateau de 2 minutes
   //Observer le résultat dans graphite et tenter de représenter le nombre de requêtes cumulées pour observer la montée progressive
   //Indice -> vous pouvez utiliser des fonction dans graphite pour effectuer des calculs sur les séries de données
   //http://graphite.readthedocs.org/en/latest/functions.html et chercher "integral"
-  setUp(...)
+  setUp(scn.inject(ramp(20 users) over (5 seconds), constantRate(20 usersPerSec) during (2 minutes)))
   
 }
 
