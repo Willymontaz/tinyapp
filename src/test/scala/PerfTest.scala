@@ -149,11 +149,13 @@ class ComplexScenario extends Simulation{
 		    		session.set("digits", digits)
 		    		}
 		    	  )
-		    .exec(
+		    .exec(session => {
 		    		http("Pi")
 		    		  .get(Params.URL+"/pi")
 		    		  .queryParam("digits", "${digits}")
+		    		  .check(regex(".*").count.is(session("digits").as[String].toInt -2))
 		    		  //Check number of digits
+		    		  session }
 		         )
 		         
 	setUp(scn.inject(ramp(Params.usersPerSec.toInt users) over (5 seconds),

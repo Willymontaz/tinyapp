@@ -8,10 +8,11 @@ public class TinyCache {
 	Map<Integer, byte[]> cache = new HashMap<Integer, byte[]>();
 	private int sizeKo;
 	
-	private TinyCache(){}
 	private static class TinyCacheHolder {
-		private static TinyCache instance = new TinyCache();
+		private static final TinyCache instance = new TinyCache();
 	}
+	
+	private TinyCache(){}
 	
 	public static TinyCache getInstance(){
 		return TinyCacheHolder.instance;

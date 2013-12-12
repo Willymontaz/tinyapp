@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class AutoFailer extends HttpServlet {
 	
-	private double FAIL_PROBA = 0.5;
+	private double FAIL_PROBA = 0.3;
 
 	@Override
 	public void init(ServletConfig config) throws ServletException {

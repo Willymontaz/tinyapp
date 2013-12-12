@@ -18,7 +18,7 @@ public class CPUConsumer extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		String stringDigits = req.getParameter("digits");
-		int nDigits = 10000;
+		int nDigits = 5000;
 		if(stringDigits != null){
 			nDigits = Integer.parseInt(stringDigits);
 		}
