@@ -1,0 +1,158 @@
+import io.gatling.core.scenario.Simulation
+import io.gatling.core.Predef._
+import io.gatling.http.Predef._
+import io.gatling.jdbc.Predef._
+import scala.concurrent.duration._
+import bootstrap._
+import assertions._
+import scala.util.Random
+import scala.xml.{Node, XML, Elem}
+
+class Exercice1A extends Simulation{
+  
+  val scn = scenario("Exercice1A")
+            .exec(http("Exercice1A")
+         //Effectuer un get sur l'url "tinyapp/slowfast"
+  
+  //Injecter dans le scénario une montée progressive de 5 secondes puis un plateau de 2 minutes
+  //Observer le résultat dans graphite et tenter de représenter le nombre de requêtes cumulées pour observer la montée progressive
+  //Indice -> vous pouvez utiliser des fonction dans graphite pour effectuer des calculs sur les séries de données
+  //http://graphite.readthedocs.org/en/latest/functions.html et chercher "integral"
+  setUp(...)
+  
+}
+
+//Utiliser un objet Params pour variabiliser l'url du serveur cible, le nombre d'utilisateurs simulés par secondes et la durée du test
+object Params {
+  
+  val URL = ...
+  val durationMinutes = ...
+  val usersPerSec = ..
+  
+}
+
+//Deviner ce qui peut dégrader les performances en observant graphite
+class Exercice1B extends Simulation{
+  
+  val scn = scenario("Exercice1B")
+            .exec(http("Exercice1B")
+              //Effectuer un get sur l'url "tinyapp/exercice1B"
+  
+              
+  setUp(...)
+  
+  
+}
+
+//Deviner ce qui peut dégrader les performances en observant graphite
+class Exercice1C extends Simulation{
+  
+  val scn = scenario("Exercice1C")
+            .exec(http("Exercice1C")
+              //Effectuer un get sur l'url "tinyapp/exercice1C"
+  
+  setUp(...)
+  
+  
+}
+
+//Deviner ce qui peut dégrader les performances en observant graphite
+class Exercice1D extends Simulation{
+  
+  val scn = scenario("Exercice1D")
+            .exec(http("Exercice1D")
+              //Effectuer un get sur l'url "tinyapp/exercice1D"
+  
+  setUp(...)
+  
+  
+}
+
+class AutoFailer extends Simulation{
+  
+  val scn = scenario("AutoFailer")
+            .exec(
+                http("AutoFailRequest")
+                	//Effectuer un get sur l'url "tinyapp/autofailer?use500=true"
+                	//Vérifier que le status HTML est 200
+                    //Observer les résultats du test de perf
+                	//Modifier le scénario pour tolérer les erreurs
+            )
+  
+  setUp(...)
+  
+  
+}
+
+class AutoFailerWithout500 extends Simulation{
+  
+  val scn = scenario("AutoFailerWithout500")
+            .exec(
+                http("AutoFailRequest")
+                	//Effectuer un get sur l'url "tinyapp/autofailer"
+                    //Trouver un moyen de vérifier les requêtes en erreur (les status HTML seront toujours 200)
+              )
+  
+  setUp(...)
+  
+  
+}
+
+class CSVFeeder extends Simulation{
+  
+  //Créer un fichier CSV avec comme entête forename,lastname et créer un dizaine d'entrées
+  //Créer un feeder csv avec une stratégie "queue"
+  val users = ...
+  
+  val scn = scenario("CSVFeeder")
+		  	//Utiliser votre feeder pour injecter les données
+            .exec(
+            		http("SlowFast")
+		              //Appeler l'url /slowfast avec les paramètres forename et lastname
+            		  //Vérifier qu'ils sont bien passés au serveur
+		         )
+  
+  setUp(...)
+  
+  
+}
+//Essayer l'exercice précédent avec une nouvelle stratégie permettant d'effectuer notre test sur la durée souhaitée
+
+class CustomFeeder extends Simulation{
+  
+  val speeds = new Feeder[String] {
+	
+	  private val RNG = new Random
+	
+	  override def hasNext //Implémenter hasNext sachant que nous souhaitons un feeder circulaire
+	
+	  override def next: Map[String, String] = {
+	    //Implémenter next sachant que nous souhaitons appeler notre service avec le paramètre "speed" à "slow" ou "fast" aléatoirement
+	  }
+  }
+  
+  val scn = scenario("CSVFeeder")
+		  	//Utiliser le feeder custom pour appeler "tinyapp/slowfast" avec le paramètre "speed" fourni par le feeder
+  
+  setUp(...)
+  
+  
+}
+
+class ComplexScenario extends Simulation{
+  val scn = scenario("SlowFastThenPiDigits")
+            .exec(
+            		//Appeler SlowFAst et sauvegarder la réponse en session
+		         )
+		    .exec(//Parser la réponse XML
+		          //Récupérer la valeur de "digits"
+		          //Réinjecter cette valeur en session
+		    	  )
+		    .exec(
+		    		//Appeler "/pi" avec le paramètre "digits" à la bonne valeur
+		            //Créer votre propre checker pour vérifier que la réponse contient le bon nombre de décimale
+		         )
+		         
+	setUp(...)
+}
+

@@ -1,0 +1,31 @@
+{
+  "servers" : [ {
+    "port" : "<%=jmxport%>",
+    "host" : "<%=jmxhost%>",
+    "queries" : [ {
+      "outputWriters" : [ {
+        "@class" : "com.googlecode.jmxtrans.model.output.GraphiteWriter",
+        "settings" : {
+          "port" : localhost,
+          "host" : "2003",
+          "rootPrefix" : "TINYAPP_JVM"
+        }
+      } ],
+      "obj" : "java.lang:type=*,name=*",
+      "attr" : [ ]
+    }, {
+      "outputWriters" : [ {
+        "@class" : "com.googlecode.jmxtrans.model.output.GraphiteWriter",
+        "settings" : {
+          "port" : localhost,
+          "host" : "2003",
+          "rootPrefix" : "TINYAPP_CACHE"
+        }
+      } ],
+      "obj" : "com.xebia.tinyapp:type=CacheInfosMBean",
+      "attr" : [ ]
+    }
+    ],
+    "numQueryThreads" : 1
+  } ]
+}
