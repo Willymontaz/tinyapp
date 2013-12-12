@@ -65,6 +65,26 @@
    <servlet-name>AutoFailer</servlet-name>
    <url-pattern>/autofailer</url-pattern>
  </servlet-mapping>
+ 
+ <servlet-mapping>
+   <servlet-name>IOConsumer</servlet-name>
+   <url-pattern>/exercice1B</url-pattern>
+ </servlet-mapping>
+ 
+ <servlet-mapping>
+   <servlet-name>CPUConsumer</servlet-name>
+   <url-pattern>/exercice1C</url-pattern>
+ </servlet-mapping>
+ 
+ <servlet-mapping>
+   <servlet-name>MemoryConsumer</servlet-name>
+   <url-pattern>/exercice1D</url-pattern>
+ </servlet-mapping>
+ 
+ <servlet-mapping>
+   <servlet-name>CPUConsumer</servlet-name>
+   <url-pattern>/pi</url-pattern>
+ </servlet-mapping>
   
   
 </web-app>
