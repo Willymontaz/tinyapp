@@ -20,7 +20,7 @@ public class IOConsumer extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		
-		int kbytes = Integer.parseInt(req.getParameter("ko"));
+		int kbytes = 50000;
 		
 		File file = new File("/tmp/tmp_"+fileId.getAndIncrement());
 		FileOutputStream fos = new FileOutputStream(file);

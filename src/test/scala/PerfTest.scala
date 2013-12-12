@@ -14,7 +14,7 @@ class Exercice1A extends Simulation{
             .exec(http("Exercice1A")
               .get(Params.URL+"/slowfast"))
   
-  setUp(scn.inject(ramp(Params.usersPerSec users) over (5 seconds),
+  setUp(scn.inject(ramp(Params.usersPerSec.toInt users) over (5 seconds),
                  constantRate(Params.usersPerSec usersPerSec) during (Params.durationMinutes minutes)))
   
   
@@ -26,7 +26,7 @@ class Exercice1B extends Simulation{
             .exec(http("Exercice1B")
               .get(Params.URL+"/exercice1B"))
   
-  setUp(scn.inject(ramp(Params.usersPerSec users) over (5 seconds),
+  setUp(scn.inject(ramp(Params.usersPerSec.toInt users) over (5 seconds),
                  constantRate(Params.usersPerSec usersPerSec) during (Params.durationMinutes minutes)))
   
   
@@ -38,7 +38,7 @@ class Exercice1C extends Simulation{
             .exec(http("Exercice1C")
               .get(Params.URL+"/exercice1C"))
   
-  setUp(scn.inject(ramp(Params.usersPerSec users) over (5 seconds),
+  setUp(scn.inject(ramp(Params.usersPerSec.toInt users) over (5 seconds),
                  constantRate(Params.usersPerSec usersPerSec) during (Params.durationMinutes minutes)))
   
   
@@ -50,7 +50,7 @@ class Exercice1D extends Simulation{
             .exec(http("Exercice1D")
               .get(Params.URL+"/exercice1D"))
   
-  setUp(scn.inject(ramp(Params.usersPerSec users) over (5 seconds),
+  setUp(scn.inject(ramp(Params.usersPerSec.toInt users) over (5 seconds),
                  constantRate(Params.usersPerSec usersPerSec) during (Params.durationMinutes minutes)))
   
   
@@ -65,7 +65,7 @@ class AutoFailer extends Simulation{
                 	.check(status.is(200))
             )
   
-  setUp(scn.inject(ramp(Params.usersPerSec users) over (5 seconds),
+  setUp(scn.inject(ramp(Params.usersPerSec.toInt users) over (5 seconds),
                  constantRate(Params.usersPerSec usersPerSec) during (Params.durationMinutes minutes)))
   
   
@@ -80,7 +80,7 @@ class AutoFailerWithout500 extends Simulation{
                 	.check(regex("Server Error").notExists)
               )
   
-  setUp(scn.inject(ramp(Params.usersPerSec users) over (5 seconds),
+  setUp(scn.inject(ramp(Params.usersPerSec.toInt users) over (5 seconds),
                  constantRate(Params.usersPerSec usersPerSec) during (Params.durationMinutes minutes)))
   
   
@@ -101,7 +101,7 @@ class CSVFeeder extends Simulation{
 		              .check(regex("Doe").notExists)
 		         )
   
-  setUp(scn.inject(ramp(Params.usersPerSec users) over (5 seconds),
+  setUp(scn.inject(ramp(Params.usersPerSec.toInt users) over (5 seconds),
                  constantRate(Params.usersPerSec usersPerSec) during (Params.durationMinutes minutes)))
   
   
@@ -129,7 +129,7 @@ class CustomFeeder extends Simulation{
 		              .queryParam("speed", "${speed}")
 		         )
   
-  setUp(scn.inject(ramp(Params.usersPerSec users) over (5 seconds),
+  setUp(scn.inject(ramp(Params.usersPerSec.toInt users) over (5 seconds),
                  constantRate(Params.usersPerSec usersPerSec) during (Params.durationMinutes minutes)))
   
   
@@ -156,7 +156,7 @@ class ComplexScenario extends Simulation{
 		    		  //Check number of digits
 		         )
 		         
-	setUp(scn.inject(ramp(Params.usersPerSec users) over (5 seconds),
+	setUp(scn.inject(ramp(Params.usersPerSec.toInt users) over (5 seconds),
                  constantRate(Params.usersPerSec usersPerSec) during (Params.durationMinutes minutes)))
 }
 

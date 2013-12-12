@@ -17,8 +17,11 @@ public class CPUConsumer extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-
-		int nDigits = Integer.parseInt(req.getParameter("digits"));
+		String stringDigits = req.getParameter("digits");
+		int nDigits = 10000;
+		if(stringDigits != null){
+			nDigits = Integer.parseInt(stringDigits);
+		}
 		BigDecimal pi = PiDigits.computePi(nDigits);
 		resp.getWriter().println(pi.toPlainString());
 		
