@@ -16,7 +16,7 @@ import com.xebia.tinyapp.util.PiDigits;
 import com.xebia.tinyapp.util.TinyCache;
 
 
-public class MemoryConsumer extends HttpServlet{
+public class MemoryServlet extends HttpServlet{
 
 	TinyCache cache = TinyCache.getInstance();
 	byte[] oneMbArray = new byte[1024*1024];
@@ -49,14 +49,17 @@ public class MemoryConsumer extends HttpServlet{
 		}
 		
 		/*
-		 * Use CPU, hopefully will get worse with GC
-		 * Use random to prevent code optimization
+		 * Do some stuff and pretend it would need cached data
 		 */
 		int nDigits = (int) (1000 + Math.random() * 500);
 		BigDecimal pi = PiDigits.computePi(nDigits);
-		
+
+        /*
+           Maybe we could remove unused data from cache here
+         */
+
 		resp.getWriter().println("Cache size is "+cache.sizeKo()+" Ko \n\n\n"+pi.toPlainString());
-		
-	}
+
+    }
 	
 }

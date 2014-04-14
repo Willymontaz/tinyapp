@@ -1,11 +1,13 @@
 package com.xebia.tinyapp.util;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 public class TinyCache {
 
-	Map<Integer, byte[]> cache = new HashMap<Integer, byte[]>();
+	Set<byte[]> cache = new HashSet<byte[]>();
 	private int sizeKo;
 	
 	private static class TinyCacheHolder {
@@ -23,8 +25,13 @@ public class TinyCache {
 	}
 	
 	public synchronized void put(byte[] b){
-		cache.put(sizeKo, b);
+		cache.add(b);
 		sizeKo += b.length;
 	}
+
+    public synchronized void remove(byte[] b){
+        cache.remove(b);
+        sizeKo -= b.length;
+    }
 
 }

@@ -3,98 +3,101 @@
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
-  
-  <servlet>
-   <servlet-name>SlowFast</servlet-name>
-   <servlet-class>com.xebia.tinyapp.SlowFast</servlet-class>
-   <init-param>
-   		<param-name>MIN</param-name>
-   		<param-value>300</param-value>
-   </init-param>
-   <init-param>
-   		<param-name>MAX</param-name>
-   		<param-value>300</param-value>
-   </init-param>
- </servlet>
 
     <servlet>
-        <servlet-name>JdbcPool</servlet-name>
-        <servlet-class>com.xebia.tinyapp.JdbcPool</servlet-class>
+        <servlet-name>FailingServlet</servlet-name>
+        <servlet-class>com.xebia.tinyapp.FailingServlet</servlet-class>
+        <init-param>
+            <param-name>FAIL_PROBA</param-name>
+            <param-value>0.7</param-value>
+        </init-param>
+    </servlet>
+  
+
+
+    <servlet>
+        <servlet-name>JdbcSerlet</servlet-name>
+        <servlet-class>com.xebia.tinyapp.JdbcServlet</servlet-class>
     </servlet>
  
  <servlet>
-   <servlet-name>IOConsumer</servlet-name>
-   <servlet-class>com.xebia.tinyapp.IOConsumer</servlet-class>
- </servlet>
- 
- <servlet>
-   <servlet-name>MemoryConsumer</servlet-name>
-   <servlet-class>com.xebia.tinyapp.MemoryConsumer</servlet-class>
- </servlet>
- 
- <servlet>
-   <servlet-name>CPUConsumer</servlet-name>
-   <servlet-class>com.xebia.tinyapp.CPUConsumer</servlet-class>
- </servlet>
- 
- <servlet>
-   <servlet-name>AutoFailer</servlet-name>
-   <servlet-class>com.xebia.tinyapp.AutoFailer</servlet-class>
-   <init-param>
-   		<param-name>FAIL_PROBA</param-name>
-   		<param-value>0.7</param-value>
-   </init-param>
+   <servlet-name>MemoryServlet</servlet-name>
+   <servlet-class>com.xebia.tinyapp.MemoryServlet</servlet-class>
  </servlet>
 
- <servlet-mapping>
-    <servlet-name>JdbcPool</servlet-name>
-    <url-pattern>/jdbcpool</url-pattern>
+    <servlet>
+        <servlet-name>PeopleServlet</servlet-name>
+        <servlet-class>com.xebia.tinyapp.PeopleServlet</servlet-class>
+    </servlet>
+ 
+ <servlet>
+   <servlet-name>PiServlet</servlet-name>
+   <servlet-class>com.xebia.tinyapp.PiServlet</servlet-class>
+ </servlet>
+
+    <servlet>
+        <servlet-name>PrecisionServlet</servlet-name>
+        <servlet-class>com.xebia.tinyapp.PrecisionServlet</servlet-class>
+    </servlet>
+
+
+    <servlet>
+        <servlet-name>SlowFastServlet</servlet-name>
+        <servlet-class>com.xebia.tinyapp.SlowFastServlet</servlet-class>
+        <init-param>
+            <param-name>MIN</param-name>
+            <param-value>300</param-value>
+        </init-param>
+        <init-param>
+            <param-name>MAX</param-name>
+            <param-value>300</param-value>
+        </init-param>
+    </servlet>
+
+    <servlet>
+        <servlet-name>TinyServlet</servlet-name>
+        <servlet-class>com.xebia.tinyapp.TinyServlet</servlet-class>
+    </servlet>
+
+
+    <servlet-mapping>
+    <servlet-name>FailingServlet</servlet-name>
+    <url-pattern>/autofail</url-pattern>
  </servlet-mapping>
  
  <servlet-mapping>
-   <servlet-name>IOConsumer</servlet-name>
-   <url-pattern>/ioconsumer</url-pattern>
+   <servlet-name>JdbcSerlet</servlet-name>
+   <url-pattern>/jdbcpool</url-pattern>
  </servlet-mapping>
  
  <servlet-mapping>
-   <servlet-name>SlowFast</servlet-name>
+   <servlet-name>MemoryServlet</servlet-name>
+   <url-pattern>/memory</url-pattern>
+ </servlet-mapping>
+ 
+ <servlet-mapping>
+   <servlet-name>PeopleServlet</servlet-name>
+   <url-pattern>/people</url-pattern>
+ </servlet-mapping>
+ 
+ <servlet-mapping>
+   <servlet-name>PiServlet</servlet-name>
+   <url-pattern>/pi</url-pattern>
+ </servlet-mapping>
+ 
+ <servlet-mapping>
+   <servlet-name>PrecisionServlet</servlet-name>
+   <url-pattern>/precision</url-pattern>
+ </servlet-mapping>
+ 
+ <servlet-mapping>
+   <servlet-name>SlowFastServlet</servlet-name>
    <url-pattern>/slowfast</url-pattern>
  </servlet-mapping>
  
  <servlet-mapping>
-   <servlet-name>MemoryConsumer</servlet-name>
-   <url-pattern>/memoryconsumer</url-pattern>
+   <servlet-name>TinyServlet</servlet-name>
+   <url-pattern>/tinyservlet</url-pattern>
  </servlet-mapping>
  
- <servlet-mapping>
-   <servlet-name>CPUConsumer</servlet-name>
-   <url-pattern>/cpuconsumer</url-pattern>
- </servlet-mapping>
- 
- <servlet-mapping>
-   <servlet-name>AutoFailer</servlet-name>
-   <url-pattern>/autofailer</url-pattern>
- </servlet-mapping>
- 
- <servlet-mapping>
-   <servlet-name>IOConsumer</servlet-name>
-   <url-pattern>/exercice1B</url-pattern>
- </servlet-mapping>
- 
- <servlet-mapping>
-   <servlet-name>CPUConsumer</servlet-name>
-   <url-pattern>/exercice1C</url-pattern>
- </servlet-mapping>
- 
- <servlet-mapping>
-   <servlet-name>MemoryConsumer</servlet-name>
-   <url-pattern>/exercice1D</url-pattern>
- </servlet-mapping>
- 
- <servlet-mapping>
-   <servlet-name>CPUConsumer</servlet-name>
-   <url-pattern>/pi</url-pattern>
- </servlet-mapping>
-  
-  
 </web-app>

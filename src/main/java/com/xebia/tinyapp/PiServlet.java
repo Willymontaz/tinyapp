@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.xebia.tinyapp.util.PiDigits;
 
-public class CPUConsumer extends HttpServlet {
+public class PiServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)

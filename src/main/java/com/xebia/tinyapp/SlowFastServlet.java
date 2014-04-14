@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class SlowFast extends HttpServlet {
+public class SlowFastServlet extends HttpServlet {
 
 	private int MIN;
 	private int MAX;
@@ -23,25 +23,17 @@ public class SlowFast extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		
-		String forename = "John";
-		String lastname = "Doe";
-		
-		if(req.getParameter("forename") != null) forename = req.getParameter("forename");
-		if(req.getParameter("lastname") != null) lastname = req.getParameter("lastname");
-		
 		try {
-			long slowSleep = 0;
 			String speed = req.getParameter("speed");
 			if ("slow".equals(speed)) {
-				slowSleep = (long) (MIN + Math.random() * (MAX - MIN));
+				long slowSleep = (long) (MIN + Math.random() * (MAX - MIN));
 				Thread.sleep(slowSleep);
 			}
 			long regularSleep = (long) (20 + Math.random() * 40);
 			Thread.sleep(regularSleep);
 
-			resp.getWriter().println("<infos>\n<number>\n\t<type>PI</type>\n\t<digits>"+(regularSleep+slowSleep)+"</digits>\n</number>\n<person>\n\t<forename>"+forename+"</forename>\n\t<lastname>"+lastname+"</lastname>\n</person>\n</infos>");
-			
-			
+			resp.getWriter().println(speed);
+
 		} catch (InterruptedException e) {
 			// Ignore
 		}

@@ -14,7 +14,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class JdbcPool extends HttpServlet {
+public class JdbcServlet extends HttpServlet {
 
     private static InitialContext initialContext;
     private static DataSource dataSource;
