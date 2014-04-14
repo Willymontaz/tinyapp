@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 public class IOConsumer extends HttpServlet {
 
 	
-	AtomicInteger fileId = new AtomicInteger(0);
+	private static AtomicInteger fileId = new AtomicInteger(0);
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
