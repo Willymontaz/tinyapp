@@ -12,7 +12,7 @@
             <param-value>0.7</param-value>
         </init-param>
     </servlet>
-  
+
 
     <servlet>
         <servlet-name>JdbcSerlet</servlet-name>

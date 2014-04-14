@@ -148,7 +148,7 @@ class Exercice3 extends Simulation{
    + visualiser la métrique sur la base de donnée
    + comparer les deux tirs
  */
-class Pool extends Simulation{
+class Exercice4 extends Simulation{
 
   val scn = scenario("Pool")
     .exec(http("Pool")
@@ -167,7 +167,7 @@ class Pool extends Simulation{
    + utiliser diamond
 
  */
-class Cpu extends Simulation{
+class Exercice5 extends Simulation{
   
   val scn = scenario("Cpu")
             .exec(http("Cpu")
