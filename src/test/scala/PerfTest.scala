@@ -237,7 +237,7 @@ class CustomFeeder extends Simulation{
 
 object Params {
   
-  val URL = "http://"+System.getProperty("host", "localhost")+":"+System.getProperty("port", "8080")+"/"
+  val URL = "http://"+System.getProperty("host", "localhost")+":"+System.getProperty("port", "8080")+"/tinyapp"
   val durationMinutes = System.getProperty("durationMinutes", "2").toInt
   val usersPerSec = System.getProperty("usersPerSec", "20").toDouble
   val users = System.getProperty("usersPerSec", "20").toInt
