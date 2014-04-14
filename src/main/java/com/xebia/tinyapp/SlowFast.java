@@ -36,10 +36,10 @@ public class SlowFast extends HttpServlet {
 				slowSleep = (long) (MIN + Math.random() * (MAX - MIN));
 				Thread.sleep(slowSleep);
 			}
-			long regularSpleep = (long) (20 + Math.random() * 40);
-			Thread.sleep(regularSpleep);
+			long regularSleep = (long) (20 + Math.random() * 40);
+			Thread.sleep(regularSleep);
 
-			resp.getWriter().println("<infos>\n<number>\n\t<type>PI</type>\n\t<digits>"+(regularSpleep+slowSleep)+"</digits>\n</number>\n<person>\n\t<forename>"+forename+"</forename>\n\t<lastname>"+lastname+"</lastname>\n</person>\n</infos>");
+			resp.getWriter().println("<infos>\n<number>\n\t<type>PI</type>\n\t<digits>"+(regularSleep+slowSleep)+"</digits>\n</number>\n<person>\n\t<forename>"+forename+"</forename>\n\t<lastname>"+lastname+"</lastname>\n</person>\n</infos>");
 			
 			
 		} catch (InterruptedException e) {
