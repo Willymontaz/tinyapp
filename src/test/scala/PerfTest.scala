@@ -97,7 +97,7 @@ class Exercice2 extends Simulation {
       }
     )
 
-  setUp(constantRate(Params.usersPerSec usersPerSec) during (Params.durationMinutes minutes))
+  setUp(scn.inject(constantRate(Params.usersPerSec usersPerSec) during (Params.durationMinutes minutes)))
 }
 
 /*
@@ -197,7 +197,7 @@ class CSVFeeder extends Simulation{
 		              .queryParam("lastname", "${lastname}")
 		         )
   
-  setUp(constantRate(Params.usersPerSec usersPerSec) during (Params.durationMinutes minutes)))
+  setUp(scn.inject(constantRate(Params.usersPerSec usersPerSec) during (Params.durationMinutes minutes)))
   
   
 }
@@ -234,8 +234,6 @@ class CustomFeeder extends Simulation{
   Exercice 7
   Utilisation des templates
  */
-
-
 
 object Params {
   
