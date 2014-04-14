@@ -22,7 +22,7 @@ public class PiDigits {
      * and a power series expansion of arctan(x) to 
      * sufficient precision.
      */
-    public static BigDecimal computePi(int digits) {
+    public static synchronized BigDecimal computePi(int digits) {
         int scale = digits + 5;
         BigDecimal arctan1_5 = arctan(5, scale);
         BigDecimal arctan1_239 = arctan(239, scale);

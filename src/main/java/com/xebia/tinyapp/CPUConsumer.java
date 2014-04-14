@@ -17,13 +17,17 @@ public class CPUConsumer extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		String stringDigits = req.getParameter("digits");
-		int nDigits = 5000;
+		long start = System.nanoTime();
+
+        String stringDigits = req.getParameter("digits");
+		int nDigits = 12000;
 		if(stringDigits != null){
 			nDigits = Integer.parseInt(stringDigits);
 		}
 		BigDecimal pi = PiDigits.computePi(nDigits);
+
+        long end = System.nanoTime();
+        resp.getWriter().println("Took "+(end - start)/1000000+" ms");
 		resp.getWriter().println(pi.toPlainString());
-		
 	}
 }
