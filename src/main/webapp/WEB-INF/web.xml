@@ -1,6 +1,6 @@
 <!DOCTYPE web-app PUBLIC
- "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
- "http://java.sun.com/dtd/web-app_2_3.dtd" >
+        "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+        "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
 
@@ -14,26 +14,25 @@
     </servlet>
   
 
-
     <servlet>
         <servlet-name>JdbcSerlet</servlet-name>
         <servlet-class>com.xebia.tinyapp.JdbcServlet</servlet-class>
     </servlet>
- 
- <servlet>
-   <servlet-name>MemoryServlet</servlet-name>
-   <servlet-class>com.xebia.tinyapp.MemoryServlet</servlet-class>
- </servlet>
+
+    <servlet>
+        <servlet-name>MemoryServlet</servlet-name>
+        <servlet-class>com.xebia.tinyapp.MemoryServlet</servlet-class>
+    </servlet>
 
     <servlet>
         <servlet-name>PeopleServlet</servlet-name>
         <servlet-class>com.xebia.tinyapp.PeopleServlet</servlet-class>
     </servlet>
- 
- <servlet>
-   <servlet-name>PiServlet</servlet-name>
-   <servlet-class>com.xebia.tinyapp.PiServlet</servlet-class>
- </servlet>
+
+    <servlet>
+        <servlet-name>PiServlet</servlet-name>
+        <servlet-class>com.xebia.tinyapp.PiServlet</servlet-class>
+    </servlet>
 
     <servlet>
         <servlet-name>PrecisionServlet</servlet-name>
@@ -61,43 +60,43 @@
 
 
     <servlet-mapping>
-    <servlet-name>FailingServlet</servlet-name>
-    <url-pattern>/autofail</url-pattern>
- </servlet-mapping>
- 
- <servlet-mapping>
-   <servlet-name>JdbcSerlet</servlet-name>
-   <url-pattern>/jdbcpool</url-pattern>
- </servlet-mapping>
- 
- <servlet-mapping>
-   <servlet-name>MemoryServlet</servlet-name>
-   <url-pattern>/memory</url-pattern>
- </servlet-mapping>
- 
- <servlet-mapping>
-   <servlet-name>PeopleServlet</servlet-name>
-   <url-pattern>/people</url-pattern>
- </servlet-mapping>
- 
- <servlet-mapping>
-   <servlet-name>PiServlet</servlet-name>
-   <url-pattern>/pi</url-pattern>
- </servlet-mapping>
- 
- <servlet-mapping>
-   <servlet-name>PrecisionServlet</servlet-name>
-   <url-pattern>/precision</url-pattern>
- </servlet-mapping>
- 
- <servlet-mapping>
-   <servlet-name>SlowFastServlet</servlet-name>
-   <url-pattern>/slowfast</url-pattern>
- </servlet-mapping>
- 
- <servlet-mapping>
-   <servlet-name>TinyServlet</servlet-name>
-   <url-pattern>/tinyservlet</url-pattern>
- </servlet-mapping>
- 
+        <servlet-name>FailingServlet</servlet-name>
+        <url-pattern>/autofail</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>JdbcSerlet</servlet-name>
+        <url-pattern>/jdbcpool</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>MemoryServlet</servlet-name>
+        <url-pattern>/memory</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>PeopleServlet</servlet-name>
+        <url-pattern>/people</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>PiServlet</servlet-name>
+        <url-pattern>/pi</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>PrecisionServlet</servlet-name>
+        <url-pattern>/precision</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>SlowFastServlet</servlet-name>
+        <url-pattern>/slowfast</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>TinyServlet</servlet-name>
+        <url-pattern>/tinyservlet</url-pattern>
+    </servlet-mapping>
+
 </web-app>
