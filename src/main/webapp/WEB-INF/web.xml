@@ -16,6 +16,11 @@
    		<param-value>300</param-value>
    </init-param>
  </servlet>
+
+    <servlet>
+        <servlet-name>JdbcPool</servlet-name>
+        <servlet-class>com.xebia.tinyapp.JdbcPool</servlet-class>
+    </servlet>
  
  <servlet>
    <servlet-name>IOConsumer</servlet-name>
@@ -40,6 +45,11 @@
    		<param-value>0.7</param-value>
    </init-param>
  </servlet>
+
+ <servlet-mapping>
+    <servlet-name>JdbcPool</servlet-name>
+    <url-pattern>/jdbcpool</url-pattern>
+ </servlet-mapping>
  
  <servlet-mapping>
    <servlet-name>IOConsumer</servlet-name>
