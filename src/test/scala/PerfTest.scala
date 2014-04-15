@@ -281,15 +281,6 @@ class Exercice7 extends Simulation{
 
   val users = csv("users.csv").circular
 
-  val scn = scenario("CSVFeeder")
-    .feed(users)
-    .exec(
-      http("People")
-        .post(Params.URL+"/people")
-        .body(StringBody(template))
-    )
-
-
   val template: Expression[String] = (session: Session) =>
     for {
       forename <- session("forename").validate[String]
@@ -301,8 +292,15 @@ class Exercice7 extends Simulation{
       </person>
     }"""
 
-  setUp(scn.inject(constantRate(Params.usersPerSec usersPerSec) during (Params.durationMinutes minutes)))
+  val scn = scenario("CSVFeeder")
+    .feed(users)
+    .exec(
+      http("People")
+        .post(Params.URL+"/people")
+        .body(StringBody(template))
+    )
 
+  setUp(scn.inject(constantRate(Params.usersPerSec usersPerSec) during (Params.durationMinutes minutes)))
 
 }
 
