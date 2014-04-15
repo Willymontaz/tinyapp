@@ -6,8 +6,8 @@
               testOnBorrow="true"
               testOnReturn="false"
               validationInterval="30000"
-              maxActive="10"
-              initialSize="10"
+              maxActive="100"
+              initialSize="100"
               driverClassName="org.hsqldb.jdbcDriver"
               url="jdbc:hsqldb:file:/tmp/employees"/>
 

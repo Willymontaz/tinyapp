@@ -103,9 +103,7 @@ class Exercice2 extends Simulation {
 /*
   Exercice 3:
   Objectifs:
-    + Détecter une fuite mémoire
     + Ajouter une métrique jmxtrans
-    + Corriger la fuite mémoire
     + Manipuler les métriques graphite
 
   Dans cet exercice, il suffit simplement de requêter le service /memory
@@ -118,11 +116,7 @@ class Exercice2 extends Simulation {
 
   Corriger la fuite mémoire, relancer le tir et observer le résultat dans graphite
 
-  Observations:
-    + visualiser dans graphite la fuite mémoire
-    + comparer les deux tirs dans graphite, avant et après la fuite mémoire
-
- */
+  */
 
 class Exercice3 extends Simulation{
 
@@ -139,14 +133,29 @@ class Exercice3 extends Simulation{
 /*
   Exercice 4
   objectifs:
-   + détecter un problème de pool de connexions
-   + ajouter une métrique (Metrics) pour le nombre de requêtes/seconde sur la base de donnée
+   + ajouter une métrique (Metrics)
    + afficher cette métrique dans graphite
-   + resizer le pool et relancer le tir
 
-  observations:
-   + visualiser la métrique sur la base de donnée
-   + comparer les deux tirs
+   Cet exercice fait appel au service /jdbcpool
+   On peut réutiliser le même scénario que dans l'exercice précédent
+   Nous allons chercher à observer l'impact de la taille d'un pool de connexion sur les performances
+   Les résultats de l'exercice dépendent de votre machine, vous devrez donc trouver vous même les paramètres correspondant à votre configuration
+   Le pool de connexion est initalement configuré avec une taille faible (10 connexions).
+
+   En premier lieu, ajouter une configuration metrics pour observer la taille du pool de connexion jdbc et exposer
+   cette métrique en JMX
+
+   Essayer de lancer des tirs de 1 minute avec plusieurs valeurs différentes pour le nombre d'utilisateurs par seconde (plutôt grand -> 70/80 utilisateurs/sec)
+   L'objectif est de trouver la limite atteinte avec ce paramètre pour le pool de connexion. (à titre indicatif
+   sur un mac book pro récent on peut pousser jusqu'à 80 utilisateurs par seconde)
+   Observer les résultats des tirs gatling et les corréler avec l'occupation du pool de thread. A la limite, vous devriez observer des temps de réponse
+   élevés et beaucoup de requêtes en erreur, le pool de thread étant lui complètement rempli.
+
+   Essayer ensuite de dimmensionner le pool avec une grande valeur (par exemple 200) et observer un nouveau tir.
+   Que remarque-t-on ?
+
+   Essayer de dimmensionner correctement le pool de thread pour obtenir (au 95ctile) de meilleurs performances en compromis avec le nombre d'erreur du service
+
  */
 class Exercice4 extends Simulation{
 
@@ -162,9 +171,17 @@ class Exercice4 extends Simulation{
 /*
  Exercice 5:
  Objectifs:
-   + détecter un threadlock
    + corréler cpu et temps réponse
    + utiliser diamond
+
+ Cet exercice fait appel au service Pi avec le paramètre digits à 8000 (à adapter selon la puissance de votre machine)
+ Configurer Diamond pour afficher les métriques systèmes sur graphite
+ Lancer un tir tel que dans l'exercice précédent avec 3 utilisateurs par seconde.
+ Obersver les résultats du tir dans graphite et les corréler à l'occupation du CPU
+ Que remarque-t-on ?
+
+ Essayer de détecter le problème dans le code et le corriger
+ Relancer le tir pour vérifier que votre corretion est efficace
 
  */
 class Exercice5 extends Simulation{

@@ -28,6 +28,13 @@ public class PiDigits {
         BigDecimal arctan1_239 = arctan(239, scale);
         BigDecimal pi = arctan1_5.multiply(FOUR).subtract(
                                   arctan1_239).multiply(FOUR);
+        //Simulate IO
+        try {
+            Thread.sleep(150);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         return pi.setScale(digits, 
                            BigDecimal.ROUND_HALF_UP);
     }
