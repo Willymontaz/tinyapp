@@ -190,7 +190,7 @@ class Exercice5 extends Simulation{
   val scn = scenario("Cpu")
             .exec(http("Cpu")
                     .get(Params.URL+"/pi")
-                    .queryParam("digits", "15000")
+                    .queryParam("digits", "1000")
             )
   
   setUp(scn.inject(constantRate(Params.usersPerSec usersPerSec) during (Params.durationMinutes minutes)))
@@ -292,8 +292,8 @@ class Exercice7 extends Simulation{
 
   val template: Expression[String] = (session: Session) =>
     for {
-      foo <- session("forename").validate[String]
-      bar <- session("lastname").validate[String]
+      forename <- session("forename").validate[String]
+      lastname <- session("lastname").validate[String]
     } yield s"""{
       <person>
         <forename>$forename</forename>
