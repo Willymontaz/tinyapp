@@ -1,0 +1,21 @@
+{
+  "servers" : [ {
+    "port" : "1099",
+    "host" : "localhost",
+    "queries" : [ {
+      "outputWriters" : [ {
+        "@class" : "com.googlecode.jmxtrans.model.output.GraphiteWriter",
+        "settings" : {
+          "port" : 2003,
+          "host" : "localhost",
+          "typeNames" : [ "name" ],
+          "rootPrefix" : "TINYAPP_JVM"
+        }
+      } ],
+      "obj" : "Catalina:type=DataSource,context=*,class=javax.sql.DataSource,name=*",
+      "resultAlias": "datasources",
+      "attr" : [ "numActive", "numIdle" ]
+    } ],
+    "numQueryThreads" : 2
+  } ]
+}
