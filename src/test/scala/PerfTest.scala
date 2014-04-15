@@ -43,12 +43,9 @@ class Exercice1 extends Simulation{
   val scn = scenario("Exercice1")
             .exec(http("ConstantRate")
                   .get(Params.URL+"/tinyservlet")
-                  .check(status.is(200))
             )
   
   setUp(scn.inject(
-          ramp(Params.users users) over (5 seconds),
-          atOnce(100 users),
           constantRate(Params.usersPerSec usersPerSec) during (Params.durationMinutes minutes)
         )
   )
@@ -78,23 +75,20 @@ class Exercice1 extends Simulation{
 class Exercice2 extends Simulation {
   val scn = scenario("Exercice2")
     .exec(
-      http("GetPrecision")
-        .get(Params.URL+"/precision")
-        .check(bodyString.saveAs("response"))
+      /*
+      Appel au premier service
+       */
     )
     .exec(session => {
-        val response = session("response").as[String]
-        val xml = XML.loadString(response)
-        val digits = (xml \\ "digits").head.text
-        session.set("digits", digits)
+        /*
+        récupération de digits et mise en session
+         */
       }
     )
     .exec(session => {
-        http("Pi")
-          .get(Params.URL+"/pi")
-          .queryParam("digits", "${digits}")
-          .check(regex(".*").count.is(session("digits").as[String].toInt -2))
-        session
+        /*
+        Récuperation de la valeur de digits depuis la session et injection dans la requête
+         */
       }
     )
 
@@ -122,9 +116,10 @@ class Exercice2 extends Simulation {
 class Exercice3 extends Simulation{
 
   val scn = scenario("Exercice3")
-            .exec(http("Memory")
-              .get(Params.URL+"/memory")
-              .check(status.is(200))
+            .exec(
+              /*
+
+               */
             )
 
   setUp(scn.inject(constantRate(Params.usersPerSec usersPerSec) during (Params.durationMinutes minutes))  )
@@ -161,8 +156,10 @@ class Exercice3 extends Simulation{
 class Exercice4 extends Simulation{
 
   val scn = scenario("Pool")
-    .exec(http("Pool")
-    .get(Params.URL+"/jdbcpool"))
+    .exec(/*
+
+          */
+    )
 
   setUp(scn.inject(constantRate(Params.usersPerSec usersPerSec) during (Params.durationMinutes minutes)))
 
@@ -188,9 +185,9 @@ class Exercice4 extends Simulation{
 class Exercice5 extends Simulation{
   
   val scn = scenario("Cpu")
-            .exec(http("Cpu")
-                    .get(Params.URL+"/pi")
-                    .queryParam("digits", "1000")
+            .exec(/*
+
+                  */
             )
   
   setUp(scn.inject(constantRate(Params.usersPerSec usersPerSec) during (Params.durationMinutes minutes)))
@@ -211,15 +208,15 @@ class Exercice5 extends Simulation{
  */
 class Exercice6A extends Simulation{
   
-  val users = csv("users.csv").circular
+  val users = //Feeder csv
   
   val scn = scenario("CSVFeeder")
-		  	.feed(users)
+		  	.//Appel au feeder
             .exec(
-            		http("People")
-		              .get(Params.URL+"/people")
-		              .queryParam("forename", "${forename}")
-		              .queryParam("lastname", "${lastname}")
+            		/*
+            		Requête et injection des données du feeder
+
+            		 */
 		         )
   
   setUp(scn.inject(constantRate(Params.usersPerSec usersPerSec) during (Params.durationMinutes minutes)))
@@ -240,22 +237,18 @@ class Exercice6B extends Simulation{
   
   val speeds = new Feeder[String] {
 	
-	  private val RNG = new Random
-	
-	  override def hasNext = true
-	
-	  override def next: Map[String, String] = {
-	    val speed = if(RNG.nextBoolean()) "slow" else "fast";
-	    Map("speed" -> speed) 
-	  }
+	  /*
+	  Implementation du feeder
+
+	   */
   }
   
   val scn = scenario("CSVFeeder")
-		  	.feed(speeds)
+		  	.//
             .exec(
-            		http("SlowFast")
-		              .get(Params.URL+"/slowfast")
-		              .queryParam("speed", "${speed}")
+            		/*
+
+            		 */
 		         )
   
   setUp(scn.inject(constantRate(Params.usersPerSec usersPerSec) during (Params.durationMinutes minutes)))
@@ -281,23 +274,14 @@ class Exercice7 extends Simulation{
 
   val users = csv("users.csv").circular
 
-  val template: Expression[String] = (session: Session) =>
-    for {
-      forename <- session("forename").validate[String]
-      lastname <- session("lastname").validate[String]
-    } yield s"""{
-      <person>
-        <forename>$forename</forename>
-        <lastname>$lastname</lastname>
-      </person>
-    }"""
+  val template: Expression[String] = //Définition du template
 
   val scn = scenario("CSVFeeder")
-    .feed(users)
+    .//Feeder
     .exec(
-      http("People")
-        .post(Params.URL+"/people")
-        .body(StringBody(template))
+      /*
+        Requête http en settant le body avec un objet StringBody
+       */
     )
 
   setUp(scn.inject(constantRate(Params.usersPerSec usersPerSec) during (Params.durationMinutes minutes)))
