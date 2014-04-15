@@ -1,5 +1,6 @@
 import io.gatling.core.scenario.Simulation
 import io.gatling.core.Predef._
+import io.gatling.core.session.Expression
 import io.gatling.http.Predef._
 import io.gatling.jdbc.Predef._
 import scala.concurrent.duration._
@@ -111,7 +112,7 @@ class Exercice2 extends Simulation {
   Que s'est-il passé ?
 
   La servlet MemoryServlet utilise TinyCache qui expose un MBean com.xebia.tinyapp:type=CacheInfosMBean
-  Configurer JMXTrans pour exposer les données du cache sur graphite
+  Configurer JMXTrans pour exposer les données du cache sur graphite (penser à exposer le port JMX du tomcat !)
   Relancer le tir et observer les résultats dans graphite
 
   Corriger la fuite mémoire, relancer le tir et observer le résultat dans graphite
@@ -192,23 +193,30 @@ class Exercice5 extends Simulation{
                     .queryParam("digits", "15000")
             )
   
-  setUp(scn.inject(ramp(Params.users users) over (5 seconds),
-                 constantRate(Params.usersPerSec usersPerSec) during (Params.durationMinutes minutes)))
+  setUp(scn.inject(constantRate(Params.usersPerSec usersPerSec) during (Params.durationMinutes minutes)))
 
 }
 
 /*
-  Exercice 6
-  Utilisation des feeders
+  Exercice 6A
+  Objectif : Utilisation des feeders
+
+  Cet exercice se base sur le service /people
+  Ce service prend en paramètre forename et lastname et sinon renvoi une erreur 500.
+
+  Nous souhaitons réaliser un test à partir de données provenant d'un fichier csv. Pour cela, Gatling propose d'utiliser des "Feeders"
+  Utiliser un feeder de type csv pour alimenter le service et essayer différent type de stratégies pour le feeder (circular, queue)
+
+
  */
-class CSVFeeder extends Simulation{
+class Exercice6A extends Simulation{
   
   val users = csv("users.csv").circular
   
   val scn = scenario("CSVFeeder")
 		  	.feed(users)
             .exec(
-            		http("SlowFast")
+            		http("People")
 		              .get(Params.URL+"/people")
 		              .queryParam("forename", "${forename}")
 		              .queryParam("lastname", "${lastname}")
@@ -219,7 +227,16 @@ class CSVFeeder extends Simulation{
   
 }
 
-class CustomFeeder extends Simulation{
+/*
+  Exercice 6B
+  Gatling permet également de créer ses propres feeders
+
+  Cet exercice se base sur le service /slowfast qui prend en entrée l'argument "speed" avec la valeur slow ou fast
+  Ecrire un feeder custom permettant de requêter le service aléatoirement avec la valeur "slow" ou "fast"
+
+ */
+
+class Exercice6B extends Simulation{
   
   val speeds = new Feeder[String] {
 	
@@ -241,8 +258,7 @@ class CustomFeeder extends Simulation{
 		              .queryParam("speed", "${speed}")
 		         )
   
-  setUp(scn.inject(ramp(Params.users users) over (5 seconds),
-                 constantRate(Params.usersPerSec usersPerSec) during (Params.durationMinutes minutes)))
+  setUp(scn.inject(constantRate(Params.usersPerSec usersPerSec) during (Params.durationMinutes minutes)))
   
   
 }
@@ -250,7 +266,46 @@ class CustomFeeder extends Simulation{
 /*
   Exercice 7
   Utilisation des templates
+
+  Cet exercice se base sur le service /people qui expose la méthode POST et attend un body xml de la forme suivante :
+  <person>
+    <forename>John</forename>
+    <lastname>Doe</lastname>
+  </person>
+
+  Créer un scénario gatling utilisant un template et y injecter les valeurs provenant du feeder csv de l'exercice 6
+
  */
+
+class Exercice7 extends Simulation{
+
+  val users = csv("users.csv").circular
+
+  val scn = scenario("CSVFeeder")
+    .feed(users)
+    .exec(
+      http("People")
+        .post(Params.URL+"/people")
+        .body(StringBody(template))
+    )
+
+
+  val template: Expression[String] = (session: Session) =>
+    for {
+      foo <- session("forename").validate[String]
+      bar <- session("lastname").validate[String]
+    } yield s"""{
+      <person>
+        <forename>$forename</forename>
+        <lastname>$lastname</lastname>
+      </person>
+    }"""
+
+  setUp(scn.inject(constantRate(Params.usersPerSec usersPerSec) during (Params.durationMinutes minutes)))
+
+
+}
+
 
 object Params {
   
