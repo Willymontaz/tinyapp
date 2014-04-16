@@ -51,12 +51,15 @@ Configuration:
     $ sudo vi /etc/diamond/diamond.conf
     
 
-Changer l'url de graphite:
+Changer (s'il y a besoin) l'url de graphite:
 
     [[GraphiteHandler]]
-    host=192.168.0.15 # mettre l'ip du serveur devoxx-ci
+    host=localhost # mettre l'ip du serveur devoxx-ci
     port=2003
-    
+
+Changer également l'intervalle entre chaque mesure de 300 à 10s:    
+
+    interval=10
 
 Redémarrer le service:
 
