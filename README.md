@@ -25,6 +25,8 @@ Editer le job jenkins ```deploiement local``` et dans la partie ```execute shell
 
     scp target/*.war devoxx@localhost:/home/devoxx/catalina_base/webapps/ && ssh devoxx@localhost ./restart.sh
 
+
+
 Pour activer le plugin gatling pour jenkins, dans le job ```tir-en-local```, cliquer à la fin sur ```Add post-build action``` et choisisser ```Track a gatling load simulation```.
 
 
