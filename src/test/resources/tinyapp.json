@@ -1,13 +1,13 @@
 {
   "servers" : [ {
-    "port" : "1099",
-    "host" : "localhost",
+    "port" : "<% jmx_port%>",
+    "host" : "<% jmx_host%>",
     "queries" : [ {
       "outputWriters" : [ {
         "@class" : "com.googlecode.jmxtrans.model.output.GraphiteWriter",
         "settings" : {
-          "port" : "2003",
-          "host" : "localhost",
+          "port" : "<% graphite_port %>",
+          "host" : "<% graphite_host %>",
           "rootPrefix" : "TINYAPP_JVM"
         }
       } ],
