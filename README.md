@@ -4,6 +4,15 @@ tinyapp
 App pour le tech event "perf continue"
 
 
+Mise à jour
+===========
+
+Avant de commencer, mettez à jour le repo git du projet:
+
+    $ cd workspace/tinyapp
+    $ git pull
+
+
 Bugfix
 =======
 
@@ -14,6 +23,25 @@ Editer le job jenkins ```deploiement local``` et dans la partie ```execute shell
 
     scp target/*.war devoxx@localhost:/home/devoxx/catalina_base/webapps/ && ssh devoxx@localhost ./restart.sh
 
+Tomcat
+======
+
+Le war du projet est déployé à l'aide de jenkins qui redémarre également le serveur.
+Vous pouvez également le redémarrer manuellement:
+
+    $ ./start.sh
+    $ ./restart.sh
+
+JMXTrans
+========
+
+Le service tourne déjà. Les fichiers de configuration json se trouve dans le projet ```tinyapp``` dans le répertoire ```src\test\resources```.
+
+Le script ```add-to-jmxtrans.sh``` ajoute ces fichiers de conf et redémarre le service:
+
+    $ cd
+    $ ./add-to-jmxtrans.sh
+    
 
 Diamond
 =======
