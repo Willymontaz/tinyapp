@@ -66,7 +66,7 @@ Changer (s'il y a besoin) l'url de graphite:
 
 Changer également l'intervalle entre chaque mesure de 300 à 10s:    
 
-    interval=10
+    interval=1
 
 Redémarrer le service:
 
