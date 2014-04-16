@@ -10,15 +10,6 @@ import java.io.IOException;
 
 public class PeopleServlet extends HttpServlet {
 
-	private int MIN;
-	private int MAX;
-
-	@Override
-	public void init(ServletConfig config) throws ServletException {
-		MIN = Integer.parseInt(config.getInitParameter("MIN"));
-		MAX = Integer.parseInt(config.getInitParameter("MAX"));
-	}
-	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {

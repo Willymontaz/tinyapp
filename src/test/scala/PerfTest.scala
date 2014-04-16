@@ -47,7 +47,7 @@ class Exercice1 extends Simulation{
             )
   
   setUp(scn.inject(
-          ramp(Params.users users) over (5 seconds),
+          ramp(Params.users users) over (20 seconds),
           atOnce(100 users),
           constantRate(Params.usersPerSec usersPerSec) during (Params.durationMinutes minutes)
         )
@@ -72,7 +72,7 @@ class Exercice1 extends Simulation{
 
    La seconde requête appelle le service /pi avec le paramètre "digits" prenant la valeur issue de la premier requête
 
-   Pour ce test, on utilisera un plateau simple à 1 utilisateur par seconde
+   Pour ce test, on utilisera un plateau simple à 1 utilisateur par seconde (pi consomme beaucoup de ressources)
 
  */
 class Exercice2 extends Simulation {
@@ -89,13 +89,10 @@ class Exercice2 extends Simulation {
         session.set("digits", digits)
       }
     )
-    .exec(session => {
+    .exec(
         http("Pi")
           .get(Params.URL+"/pi")
           .queryParam("digits", "${digits}")
-          .check(regex(".*").count.is(session("digits").as[String].toInt -2))
-        session
-      }
     )
 
   setUp(scn.inject(constantRate(Params.usersPerSec usersPerSec) during (Params.durationMinutes minutes)))
@@ -111,9 +108,13 @@ class Exercice2 extends Simulation {
   Implémenter un tir similaire à l'exercice 1 et le lancer
   Que s'est-il passé ?
 
+  Indication : il faut redémarrer tomcat après ce tir
+
   La servlet MemoryServlet utilise TinyCache qui expose un MBean com.xebia.tinyapp:type=CacheInfosMBean
   Configurer JMXTrans pour exposer les données du cache sur graphite (penser à exposer le port JMX du tomcat !)
   Relancer le tir et observer les résultats dans graphite
+
+  Indication : il faut redémarrer tomcat après ce tir
 
   Corriger la fuite mémoire, relancer le tir et observer le résultat dans graphite
 
@@ -175,7 +176,7 @@ class Exercice4 extends Simulation{
    + corréler cpu et temps réponse
    + utiliser diamond
 
- Cet exercice fait appel au service Pi avec le paramètre digits à 8000 (à adapter selon la puissance de votre machine)
+ Cet exercice fait appel au service Pi avec le paramètre digits à 1000
  Configurer Diamond pour afficher les métriques systèmes sur graphite
  Lancer un tir tel que dans l'exercice précédent avec 3 utilisateurs par seconde.
  Obersver les résultats du tir dans graphite et les corréler à l'occupation du CPU
