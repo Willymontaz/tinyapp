@@ -49,7 +49,7 @@ Probleme sur le deploiement tomcat:
 
 * commenter la ligne jmx dans ```scripts/bin/setenv.sh```
 * copier la ligne jmx en haut du script ```scripts/bin/startup.sh```
-* remplacer dans le script ```./restart.sh``` la ligne ```. ./catalina.sh stop``` par la ligne ```. ./shutdown.sh```
+* dans le script ```./restart.sh``` laisser la ligne ```. ./catalina.sh stop``` 
 * remplacer dans le script ```./restart.sh``` la ligne ```. ./catalina.sh start``` par la ligne ```. ./startup.sh```
 
 Tomcat
