@@ -16,12 +16,17 @@ Avant de commencer, mettez à jour le repo git du projet:
 Bugfix
 =======
 
-Jenkins:
+Jenkins
+-------
+
 
 Dans le build jenkins, le déploiement ne dépose pas le war au bon endroit.
 Editer le job jenkins ```deploiement local``` et dans la partie ```execute shell``` remplacer par la commande:
 
     scp target/*.war devoxx@localhost:/home/devoxx/catalina_base/webapps/ && ssh devoxx@localhost ./restart.sh
+
+Pour activer le plugin gatling pour jenkins, dans le job ```tir-en-local```, cliquer à la fin sur ```Add post-build action``` et choisisser ```Track a gatling load simulation```.
+
 
 Tomcat
 ======
@@ -64,3 +69,13 @@ Changer également l'intervalle entre chaque mesure de 300 à 10s:
 Redémarrer le service:
 
     $ sudo service diamond restart
+
+
+JMX/JConsole
+============
+
+Pour visualiser les mBean JMX disponibles, ça peut être util d'utiliser JConsole (ou mieux visualvm). On a ajouté un raccourci:
+
+    $ cd
+    $ ./jconsole.sh
+   
