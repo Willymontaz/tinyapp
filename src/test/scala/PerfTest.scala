@@ -133,17 +133,13 @@ class Exercice3 extends Simulation{
 /*
   Exercice 4
   objectifs:
-   + ajouter une métrique (Metrics)
-   + afficher cette métrique dans graphite
+   + dimensionner un pool jdbc
 
    Cet exercice fait appel au service /jdbcpool
    On peut réutiliser le même scénario que dans l'exercice précédent
    Nous allons chercher à observer l'impact de la taille d'un pool de connexion sur les performances
    Les résultats de l'exercice dépendent de votre machine, vous devrez donc trouver vous même les paramètres correspondant à votre configuration
    Le pool de connexion est initalement configuré avec une taille faible (10 connexions).
-
-   En premier lieu, ajouter une configuration metrics pour observer la taille du pool de connexion jdbc et exposer
-   cette métrique en JMX
 
    Essayer de lancer des tirs de 1 minute avec plusieurs valeurs différentes pour le nombre d'utilisateurs par seconde (plutôt grand -> 70/80 utilisateurs/sec)
    L'objectif est de trouver la limite atteinte avec ce paramètre pour le pool de connexion. (à titre indicatif
