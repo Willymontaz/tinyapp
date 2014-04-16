@@ -85,11 +85,11 @@ class Exercice2 extends Simulation {
          */
       }
     )
-    .exec(session => {
+    .exec(
         /*
         Récuperation de la valeur de digits depuis la session et injection dans la requête
          */
-      }
+
     )
 
   setUp(scn.inject(constantRate(Params.usersPerSec usersPerSec) during (Params.durationMinutes minutes)))
@@ -105,9 +105,13 @@ class Exercice2 extends Simulation {
   Implémenter un tir similaire à l'exercice 1 et le lancer
   Que s'est-il passé ?
 
+  Indication : il faut redémarrer tomcat après ce tir
+
   La servlet MemoryServlet utilise TinyCache qui expose un MBean com.xebia.tinyapp:type=CacheInfosMBean
   Configurer JMXTrans pour exposer les données du cache sur graphite (penser à exposer le port JMX du tomcat !)
   Relancer le tir et observer les résultats dans graphite
+
+  Indication : il faut redémarrer tomcat après ce tir
 
   Corriger la fuite mémoire, relancer le tir et observer le résultat dans graphite
 
