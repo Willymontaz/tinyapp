@@ -12,9 +12,9 @@
           "rootPrefix" : "TINYAPP_JVM"
         }
       } ],
-      "obj" : "Catalina:type=DataSource,context=*,class=javax.sql.DataSource,name=*",
+      "obj" : "Catalina:type=DataSource,context=/tinyapp,host=*,class=javax.sql.DataSource,name=*",
       "resultAlias": "datasources",
-      "attr" : [ "numActive", "numIdle" ]
+      "attr" : [  ]
     } ],
     "numQueryThreads" : 2
   } ]
