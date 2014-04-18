@@ -13,44 +13,6 @@ Avant de commencer, mettez à jour le repo git du projet:
     $ git pull
 
 
-Bugfix
-=======
-
-
-Réseau
-------
-
-Si vous voulez utilisez deux serveurs, la configuration des cartes réseaux est un peu différente par rapport
-à la doc:
-
-
-* utilisez le réseau à la place du réseau hôte
-* si vous utilisez une deuxième carte NAT, il faut que le réseau hôte soit sur la première carte
-
-
-
-
-Jenkins
--------
-
-
-Dans le build jenkins, le déploiement ne dépose pas le war au bon endroit.
-Editer le job jenkins ```deploiement local``` et dans la partie ```execute shell``` remplacer par la commande:
-
-    scp target/*.war devoxx@localhost:/home/devoxx/catalina_base/webapps/ && ssh devoxx@localhost ./restart.sh
-
-
-
-Pour activer le plugin gatling pour jenkins, dans le job ```tir-en-local```, cliquer à la fin sur ```Add post-build action``` et choisisser ```Track a gatling load simulation```.
-
-
-
-Probleme sur le deploiement tomcat:
-
-* commenter la ligne jmx dans ```scripts/bin/setenv.sh```
-* copier la ligne jmx en haut du script ```scripts/bin/startup.sh```
-* dans le script ```./restart.sh``` laisser la ligne ```. ./catalina.sh stop``` 
-* remplacer dans le script ```./restart.sh``` la ligne ```. ./catalina.sh start``` par la ligne ```. ./startup.sh```
 
 Tomcat
 ======
@@ -103,3 +65,42 @@ Pour visualiser les mBean JMX disponibles, ça peut être util d'utiliser JConso
     $ cd
     $ ./jconsole.sh
    
+   
+Bugfix
+=======
+
+
+Réseau
+------
+
+Si vous voulez utilisez deux serveurs, la configuration des cartes réseaux est un peu différente par rapport
+à la doc:
+
+
+* utilisez le réseau à la place du réseau hôte
+* si vous utilisez une deuxième carte NAT, il faut que le réseau hôte soit sur la première carte
+
+
+
+
+Jenkins
+-------
+
+
+Dans le build jenkins, le déploiement ne dépose pas le war au bon endroit.
+Editer le job jenkins ```deploiement local``` et dans la partie ```execute shell``` remplacer par la commande:
+
+    scp target/*.war devoxx@localhost:/home/devoxx/catalina_base/webapps/ && ssh devoxx@localhost ./restart.sh
+
+
+
+Pour activer le plugin gatling pour jenkins, dans le job ```tir-en-local```, cliquer à la fin sur ```Add post-build action``` et choisisser ```Track a gatling load simulation```.
+
+
+
+Probleme sur le deploiement tomcat:
+
+* commenter la ligne jmx dans ```scripts/bin/setenv.sh```
+* copier la ligne jmx en haut du script ```scripts/bin/startup.sh```
+* dans le script ```./restart.sh``` laisser la ligne ```. ./catalina.sh stop``` 
+* remplacer dans le script ```./restart.sh``` la ligne ```. ./catalina.sh start``` par la ligne ```. ./startup.sh```
